@@ -11,8 +11,8 @@ set -e
 
 # --- Configuration variables (Modify these to match your AWS environment) ---
 AWS_REGION="us-east-1"
-AWS_ACCOUNT_ID="123456789012" # Replace with your 12-digit AWS Account ID
-IMAGE_TAG="latest"            # You can change this to a version number (e.g. 1.0.0)
+AWS_ACCOUNT_ID="404459111172" # Updated to your actual AWS Account ID
+IMAGE_TAG="latest"            
 
 # Set the backend URL for the client.
 # - If you deploy on different IPs (e.g. client on http://3.236.237.226/ and server on http://44.205.15.80:5000/)
@@ -21,9 +21,10 @@ IMAGE_TAG="latest"            # You can change this to a version number (e.g. 1.
 CLIENT_API_URL="http://44.205.15.80:5000/api"
 
 ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
-ECR_REPO_SERVER="tasksphere-server"
-ECR_REPO_CLIENT="tasksphere-client"
+ECR_REPO_SERVER="todo-list-server"  # Updated to your actual ECR Repo
+ECR_REPO_CLIENT="todo-list-client"  # Updated to your actual ECR Repo
 
+# Update these to match your actual ECS Cluster and Service names in AWS
 ECS_CLUSTER="tasksphere-cluster"
 ECS_SERVICE_SERVER="tasksphere-server-service"
 ECS_SERVICE_CLIENT="tasksphere-client-service"
