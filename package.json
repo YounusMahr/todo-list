@@ -1,0 +1,14 @@
+{
+  "name": "todo-list-root",
+  "version": "1.0.0",
+  "description": "Root workspace package for MERN Todo List",
+  "private": true,
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "npx concurrently -n \"server,client\" -c \"blue,magenta\" \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
