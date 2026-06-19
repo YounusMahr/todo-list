@@ -14,6 +14,12 @@ AWS_REGION="us-east-1"
 AWS_ACCOUNT_ID="123456789012" # Replace with your 12-digit AWS Account ID
 IMAGE_TAG="latest"            # You can change this to a version number (e.g. 1.0.0)
 
+# Set the backend URL for the client.
+# - If you deploy on different IPs (e.g. client on http://3.236.237.226/ and server on http://44.205.15.80:5000/)
+#   set this to the absolute backend URL: "http://44.205.15.80:5000/api"
+# - If you deploy behind an ALB routing both under the same domain, keep this as "/api"
+CLIENT_API_URL="http://44.205.15.80:5000/api"
+
 ECR_REGISTRY="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 ECR_REPO_SERVER="tasksphere-server"
 ECR_REPO_CLIENT="tasksphere-client"
@@ -39,7 +45,7 @@ echo ""
 
 # --- 3. Build and Push Client Frontend ---
 echo "📦 Building client image..."
-docker build --build-arg VITE_API_URL=/api -t ${ECR_REGISTRY}/${ECR_REPO_CLIENT}:${IMAGE_TAG} ./client
+docker build --build-arg VITE_API_URL=${CLIENT_API_URL} -t ${ECR_REGISTRY}/${ECR_REPO_CLIENT}:${IMAGE_TAG} ./client
 
 echo "🚀 Pushing client image to ECR..."
 docker push ${ECR_REGISTRY}/${ECR_REPO_CLIENT}:${IMAGE_TAG}
